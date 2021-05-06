@@ -1,0 +1,29 @@
+
+Create bucket
+gsutil mb -c multi_regional gs://mybucket-<unique name>/
+
+List contents
+gsutil ls gs://mybucket-<unique name>
+
+gsutil ls -l gs://ishaqgcpproject
+
+copy the contents from localhost to gcs bucket
+gsutil cp download123.png gs://ishaqgcpproject2020/download123.png
+
+copy the contents from gcs bucket to localhost
+gsutil cp gs://ishaqgcpproject2020/download123.png .
+
+
+To remove contents of the bucket
+gsutil -m rm gs://mybucket-<unique name>/**
+
+Remove bucket 
+gsutil rb gs://mybucket-<unique name>
+
+gsutil versioning set on gs://ishaqgcpproject
+
+gsutil du -a gs://ishaqgcpproject/
+
+gsutil du -sh -a gs://ishaqgcpproject/
+
+
