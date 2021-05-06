@@ -1,0 +1,36 @@
+
+https://cloud.google.com/monitoring/quickstart-lamp
+
+Monitoring a Compute Engine instance
+
+Create a Compute Engine VM instance.
+Install Apache HTTP Server.
+Install the Cloud Monitoring and Logging agents.
+Create an uptime check with an alerting policy.
+Create a custom dashboard and chart.
+View your logs.
+Clean up.
+
+
+--------------------------------------------------------------------------
+
+Install agents
+
+curl -sSO https://dl.google.com/cloudagents/add-monitoring-agent-repo.sh
+sudo bash add-monitoring-agent-repo.sh
+sudo apt-get update
+sudo apt-get install stackdriver-agent
+
+sudo service stackdriver-agentstart
+---------------------------------------------------------------------------
+
+Install, configure and start the cloud logging agent
+curl -sSO https://dl.google.com/cloudagents/add-logging-agent-repo.sh
+sudo bash add-logging-agent-repo
+sudo apt-get update
+sudo apt-get install google-fluentd
+
+sudo apt-get install google-fluentd-catch-all-config-structured
+
+sudo service google-fludent start
+

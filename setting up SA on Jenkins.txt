@@ -1,0 +1,12 @@
+Setting up SA account on Jenkins
+
+SSH into Jenkins
+Copy SA account json key on jenkins VM
+sudo apt-get update -y
+sudo apt-get install -y cl-base64
+base64 -w0 <./terraform.json> 
+Once above command is successful ran, then copy the output and create a secret on Jenkins
+Go to Jenkins and add secret.txt in credentials
+
+Install Terraform plugins
+
