@@ -34,3 +34,9 @@ sudo apt-get install google-fluentd-catch-all-config-structured
 
 sudo service google-fludent start
 
+
+
+--------------------------------------------------
+
+Done
+

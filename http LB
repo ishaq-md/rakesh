@@ -1,0 +1,48 @@
+http load balancer
+
+
+Create startup script
+
+cat << EOF > startup.sh
+#! /bin/bash
+apt-get update
+apt-get install -y nginx
+service nginx start
+sed -i -- 's/nginx/Google Cloud Platform - '"\$HOSTNAME"'/' /var/www/html/index.nginx-debian.html
+EOF
+
+create instance template with startup script
+
+gcloud compute instance-templates create nginx-template --metadata-from-file startup-script=startup.sh
+
+
+Create a target pool to hit single ip
+
+gcloud compute target-pools create nginx-pool --region us-central1
+
+
+Create MIG and add instances to targetpool
+
+gcloud compute instance-groups managed create nginx-group --base-instance-name nginx --size 2 --template nginx-template --target-pool nginx-pool --region us-central1
+
+List instances
+gcloud compute instances list
+
+		 
+open http fw
+gcloud compute firewall-rules create allow-fw-http --allow tcp:80
+
+Create http load balancer
+
+gcloud compute forwarding-rules create nginx-lb \
+         --region us-central1 \
+         --ports=80 \
+         --target-pool nginx-pool
+		 
+gcloud compute forwarding-rules create nginx-lb --region us-central1 --ports=80 --target-pool nginx-pool
+		 
+		 
+gcloud compute forwarding-rules list
+
+hit the ipaddress
+
